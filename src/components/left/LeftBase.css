@@ -1,0 +1,7 @@
+.upper {
+    height: 10%;
+}
+.lower {
+    height: 90%;
+    overflow: auto;
+}

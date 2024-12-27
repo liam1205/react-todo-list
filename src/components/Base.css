@@ -1,0 +1,13 @@
+.base-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    .base-left {
+        width: 17.5%;
+        height: 100%;
+    }
+    .base-right {
+        width: 87.5%;
+        height: 100%;
+    }
+}

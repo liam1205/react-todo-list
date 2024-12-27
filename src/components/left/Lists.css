@@ -1,0 +1,11 @@
+.list {
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    > p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+}
