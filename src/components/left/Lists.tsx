@@ -13,7 +13,7 @@ const Lists = () => {
   return (
     <div>
       {lists.map(list => (
-        <section className="list">
+        <section className="list" key={list.name}>
           <div className="form-check form-switch">
             <input
               className="form-check-input"

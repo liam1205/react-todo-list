@@ -3,12 +3,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    > input {
-        height: 2rem;
-        width: 75%;
-        margin-bottom: 0.5rem;
+    > form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > input {
+            height: 2rem;
+            width: 95%;
+            background-color: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.40);
+        }
     }
     > button {
-        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.5rem;
+        border-color:  transparent;
+        width: 75%;
+        > img {
+            width: 1rem;
+        }
+    }
+    > button:hover {
+        color: rgb(13, 110, 253);
+        border-color:  transparent;
+        background-color:  rgba(13, 110, 253, 0.15);
     }
 }

@@ -18,51 +18,30 @@ const initialState: ListState = {
       items: ['Pasta', 'Milk', 'Meat', 'Espresso', 'Vino'],
     },
     {
-      name: 'To Do',
+      name: 'Workout Plan',
       displayed: true,
-      items: ['Wash Car', 'Clean Room', 'Do Homework', 'Go Shopping'],
-    },
-    { name: 'Workout Plan', displayed: true, items: ['Push-ups', 'Squats', 'Jogging'] },
-    {
-      name: 'Books to Read',
-      displayed: false,
-      items: ['1984', 'To Kill a Mockingbird', 'Moby Dick'],
-    },
-    { name: 'Travel Destinations', displayed: false, items: ['Paris', 'Tokyo', 'New York'] },
-    {
-      name: 'Movies to Watch',
-      displayed: false,
-      items: ['Inception', 'The Matrix', 'Interstellar'],
-    },
-    { name: 'Groceries', displayed: false, items: ['Apples', 'Bananas', 'Bread'] },
-    { name: 'Weekend Plans', displayed: false, items: ['Visit Park', 'Go Hiking', 'Attend Party'] },
-    { name: 'Recipes', displayed: false, items: ['Spaghetti', 'Tacos', 'Salad'] },
-    { name: 'Tech Wishlist', displayed: false, items: ['Laptop', 'Smartphone', 'Smartwatch'] },
-    {
-      name: 'Songs to Learn',
-      displayed: false,
-      items: ['Imagine', 'Bohemian Rhapsody', 'Hallelujah'],
-    },
-    { name: 'Birthday Party', displayed: false, items: ['Cake', 'Balloons', 'Gifts'] },
-    { name: 'Cleaning Tasks', displayed: false, items: ['Vacuum', 'Dust Shelves', 'Mop Floors'] },
-    { name: 'Shopping List 2', displayed: false, items: ['Eggs', 'Cheese', 'Butter'] },
-    { name: 'Gardening', displayed: false, items: ['Plant Seeds', 'Water Plants', 'Weed Garden'] },
-    { name: 'Event Planning', displayed: false, items: ['Venue', 'Invitations', 'Catering'] },
-    {
-      name: 'Holiday Preparation',
-      displayed: false,
-      items: ['Pack Bags', 'Book Tickets', 'Prepare Snacks'],
-    },
-    { name: 'Hobbies', displayed: false, items: ['Painting', 'Photography', 'Knitting'] },
-    {
-      name: 'Home Improvement',
-      displayed: false,
-      items: ['Paint Walls', 'Fix Leaks', 'Buy Furniture'],
+      items: ['Push-ups', 'Squats', 'Plank', 'Burpees', 'Lunges'],
     },
     {
-      name: 'Job Applications',
+      name: 'Reading List',
       displayed: false,
-      items: ['Update Resume', 'Apply Online', 'Prepare Portfolio'],
+      items: [
+        '1984 by George Orwell',
+        'To Kill a Mockingbird',
+        'The Great Gatsby',
+        'Moby Dick',
+        'War and Peace',
+      ],
+    },
+    {
+      name: 'Grocery List',
+      displayed: true,
+      items: ['Apples', 'Bananas', 'Carrots', 'Chicken', 'Rice'],
+    },
+    {
+      name: 'Travel Checklist',
+      displayed: true,
+      items: ['Passport', 'Tickets', 'Toiletries', 'Clothes', 'Snacks'],
     },
   ],
 };
@@ -83,23 +62,27 @@ const listSlice = createSlice({
     },
     // Add an item to a specific list
     addItem: (state, action) => {
-      const { listIndex, item } = action.payload; // TODO: fix
-      if (state.lists[listIndex]) {
-        state.lists[listIndex].items.push(item);
+      console.log(`list: ${action.payload.listName}, item: ${action.payload.item}`);
+      const { listName, item } = action.payload; // Use listName instead of listIndex
+      const list = state.lists.find(list => list.name === listName); // Find list by name
+      if (list) {
+        list.items.push(item);
       }
     },
     // Remove an item from a specific list by index
     removeItem: (state, action) => {
-      const { listIndex, itemIndex } = action.payload;
-      if (state.lists[listIndex] && state.lists[listIndex].items[itemIndex] !== undefined) {
-        state.lists[listIndex].items.splice(itemIndex, 1);
+      const { listName, itemIndex } = action.payload;
+      const list = state.lists.find(list => list.name === listName); // Find list by name
+      if (list && list.items[itemIndex] !== undefined) {
+        list.items.splice(itemIndex, 1);
       }
     },
     // Update an item in a specific list
     updateItem: (state, action) => {
-      const { listIndex, itemIndex, newItem } = action.payload;
-      if (state.lists[listIndex] && state.lists[listIndex].items[itemIndex] !== undefined) {
-        state.lists[listIndex].items[itemIndex] = newItem;
+      const { listName, itemIndex, newItem } = action.payload;
+      const list = state.lists.find(list => list.name === listName); // Find list by name
+      if (list && list.items[itemIndex] !== undefined) {
+        list.items[itemIndex] = newItem;
       }
     },
     updateListDisplayed: (state, action) => {

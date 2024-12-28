@@ -1,7 +1,8 @@
 .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-auto-rows: min-content;
+    gap: 0.5rem;
     overflow: auto;
     padding: 10px;
 }
